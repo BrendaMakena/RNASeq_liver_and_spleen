@@ -85,6 +85,6 @@ RNASeqfeatureCounts <- RNASeqfeatureCounts[rowSums(RNASeqfeatureCounts)>0,]
 
 
 # Saving the feature counts to a file 
-saveRDS(RNASeqfeatureCounts, "intermediateData/RNASeqCountTable_less_stringent.RDS")
+saveRDS(RNASeqfeatureCounts, "/home/brenda/RNASeq_liver_and_spleen/intermediateData/RNASeqCountTable_less_stringent.RDS")
 
 
