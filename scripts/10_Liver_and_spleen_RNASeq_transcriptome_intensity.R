@@ -46,10 +46,34 @@ rnaseq_summary <- data.frame(Transcript_ID = rownames(RNASeqfeatureCounts), RNAs
 # Merging the summaries based on Transcript_ID
 merged_Hep_summary <- merge(tagseq_summary, rnaseq_summary, by = "Transcript_ID", all = TRUE)
 
+# replacing the NA values with zeros for plotting
+merged_Hep_summary[is.na(merged_Hep_summary)] <- 0
+
 # Displaying the first few rows of the merged summary
 head(merged_Hep_summary)
 
 print(merged_Hep_summary)
 
+
 saveRDS(merged_Hep_summary,file = "/home/brenda/RNASeq_liver_and_spleen/intermediateData/mergedHepatocystisCounts.RDS")
+
+
+
+# visualising how the Tagseq versus RNAseq Hepatocystis transcripts compare
+ggplot(merged_Hep_summary, aes(x=Tagseq_Rowsums, y=RNAseq_Rowsums)) +
+  geom_point() 
+
+ 
+# loading the Hepatocystis proteins table 
+hepatocystis_proteins <- read.csv("/home/brenda/BatHepatoTransc/inputdata/hepatocystis_proteins.csv")
+hepatocystis_proteins  
+
+
+# what the highest expressed Hepatocystis transcript in the tagseq dataset but not in the RNASeq dataset is
+hepatocystis_proteins[hepatocystis_proteins$Locus.tag %in% "HEP_00048100", ]
+        # it is not in the annotated proteins file
+
+# checking another transcript in the RNASeq dataset but not expressed in Tagseq dataset
+hepatocystis_proteins[hepatocystis_proteins$Locus.tag %in% "HEP_00480400", ]
+
 
