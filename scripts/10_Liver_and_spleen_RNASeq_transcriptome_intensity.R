@@ -77,3 +77,5 @@ hepatocystis_proteins[hepatocystis_proteins$Locus.tag %in% "HEP_00048100", ]
 hepatocystis_proteins[hepatocystis_proteins$Locus.tag %in% "HEP_00480400", ]
 
 
+hepatocystis_proteins[hepatocystis_proteins$Locus.tag %in% "HEP_00203900", ]
+
